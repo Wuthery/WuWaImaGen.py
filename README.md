@@ -13,6 +13,10 @@ WuWaConvene - A module for Python that allows you to get the gacha history from 
 * Automatically receive a link to the journal
 * Counting history
 
+### Helpful information:
+* [F.A.Q.](https://github.com/Wuthery/WuWaConvene.py/wiki/Documentation)
+* [Discord](https://discord.gg/rKrbqz5utj)
+
 ### Install:
 
 ```
@@ -43,3 +47,8 @@ async def main():
 asyncio.run(main())
 
 ```
+
+
+-------
+> [!NOTE]  
+> The module is still under development, this is not the final version, so stay tuned for updates
