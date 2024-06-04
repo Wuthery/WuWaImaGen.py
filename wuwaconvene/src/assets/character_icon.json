@@ -1,0 +1,47 @@
+{
+    "test": 0,
+    "1202": {
+        "Icon": "/Game/Aki/UI/UIResources/Common/Image/IconRoleHead256/T_IconRoleHead256_2_UI.T_IconRoleHead256_2_UI",
+        "Background": "/Game/Aki/UI/UIResources/Common/Image/IconRolePile/T_IconRole_Pile_maxiaofang_UI.T_IconRole_Pile_maxiaofang_UI"
+    },
+    "1301": {
+        "Icon": "/Game/Aki/UI/UIResources/Common/Image/IconRoleHead256/T_IconRoleHead256_18_UI.T_IconRoleHead256_18_UI",
+        "Background": "/Game/Aki/UI/UIResources/Common/Image/IconRolePile/T_IconRole_Pile_kakaluo_UI.T_IconRole_Pile_kakaluo_UI"
+    },
+    "1404": {
+        "Icon": "/Game/Aki/UI/UIResources/Common/Image/IconRoleHead256/T_IconRoleHead256_11_UI.T_IconRoleHead256_11_UI",
+        "Background": "/Game/Aki/UI/UIResources/Common/Image/IconRolePile/T_IconRole_Pile_jiyan_UI.T_IconRole_Pile_jiyan_UI"
+    },
+    "1203": {
+        "Icon": "/Game/Aki/UI/UIResources/Common/Image/IconRoleHead256/T_IconRoleHead256_8_UI.T_IconRoleHead256_8_UI",
+        "Background": "/Game/Aki/UI/UIResources/Common/Image/IconRolePile/T_IconRole_Pile_anke_UI.T_IconRole_Pile_anke_UI"
+    },
+    "1204": {
+        "Icon": "/Game/Aki/UI/UIResources/Common/Image/IconRoleHead256/T_IconRoleHead256_13_UI.T_IconRoleHead256_13_UI",
+        "Background": "/Game/Aki/UI/UIResources/Common/Image/IconRolePile/T_IconRole_Pile_baer_UI.T_IconRole_Pile_baer_UI"
+    },
+    "1303": {
+        "Icon": "/Game/Aki/UI/UIResources/Common/Image/IconRoleHead256/T_IconRoleHead256_15_UI.T_IconRoleHead256_15_UI",
+        "Background": "/Game/Aki/UI/UIResources/Common/Image/IconRolePile/T_IconRole_Pile_yuanwu_UI.T_IconRole_Pile_yuanwu_UI"
+    },
+    "1601": {
+        "Icon": "/Game/Aki/UI/UIResources/Common/Image/IconRoleHead256/T_IconRoleHead256_9_UI.T_IconRoleHead256_9_UI",
+        "Background": "/Game/Aki/UI/UIResources/Common/Image/IconRolePile/T_IconRole_Pile_taohua_UI.T_IconRole_Pile_taohua_UI"
+    },
+    "1103": {
+        "Icon": "/Game/Aki/UI/UIResources/Common/Image/IconRoleHead256/T_IconRoleHead256_6_UI.T_IconRoleHead256_6_UI",
+        "Background": "/Game/Aki/UI/UIResources/Common/Image/IconRolePile/T_IconRole_Pile_bailian_UI.T_IconRole_Pile_bailian_UI"
+    },
+    "1403": {
+        "Icon": "/Game/Aki/UI/UIResources/Common/Image/IconRoleHead256/T_IconRoleHead256_12_UI.T_IconRoleHead256_12_UI",
+        "Background": "/Game/Aki/UI/UIResources/Common/Image/IconRolePile/T_IconRole_Pile_qiushui_UI.T_IconRole_Pile_qiushui_UI"
+    },
+    "1402": {
+        "Icon": "/Game/Aki/UI/UIResources/Common/Image/IconRoleHead256/T_IconRoleHead256_1_UI.T_IconRoleHead256_1_UI",
+        "Background": "/Game/Aki/UI/UIResources/Common/Image/IconRolePile/T_IconRole_Pile_yangyang_UI.T_IconRole_Pile_yangyang_UI"
+    },
+    "1503": {
+        "Icon": "/Game/Aki/UI/UIResources/Common/Image/IconRoleHead256/T_IconRoleHead256_3_UI.T_IconRoleHead256_3_UI",
+        "Background": "/Game/Aki/UI/UIResources/Common/Image/IconRolePile/T_IconRole_Pile_jueyuan_UI.T_IconRole_Pile_jueyuan_UI"
+    }
+}
