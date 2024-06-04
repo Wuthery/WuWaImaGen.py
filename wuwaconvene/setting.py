@@ -1,9 +1,8 @@
+from urllib.parse import parse_qs, urlparse
 
-from email.policy import default
-from urllib.parse import urlparse, parse_qs
 
-def get_params_link(url:str):
-    parsed_url = urlparse(url.replace('#', ''))
+def get_params_link(url: str):
+    parsed_url = urlparse(url.replace("#", ""))
 
     query_params = parse_qs(parsed_url.query)
 
@@ -14,6 +13,7 @@ def get_params_link(url:str):
 
 DefaultColor = {"hex": "#FFFFFF", "rgba": (255, 255, 255, 255)}
 
+
 async def get_color_four_section(value):
     if 1 <= value <= 4:
         return {"hex": "#7FFFD4", "rgba": (127, 255, 212, 255)}
@@ -21,7 +21,8 @@ async def get_color_four_section(value):
         return {"hex": "#FFA500", "rgba": (255, 165, 0, 255)}
     elif 8 <= value <= 10:
         return {"hex": "#8A2BE2", "rgba": (138, 43, 226, 255)}
-    
+
+
 async def get_color_five_section(value):
     if 1 <= value <= 16:
         return {"hex": "#7FFFD4", "rgba": (127, 255, 212, 255)}
@@ -34,26 +35,10 @@ async def get_color_five_section(value):
     elif 65 <= value <= 80:
         return {"hex": "#FF4500", "rgba": (255, 69, 0, 255)}
 
-cardPoolType = [
-    "1",
-    "2",
-    "3",
-    "4",
-    "5",
-    "6",
-    "7"
-]
 
-SupportLang = [
-    "zh-Hans",
-    "zh-Hant",
-    "en",
-    "ja",
-    "ko",
-    "fr",
-    "de",
-    "es"
-]
+cardPoolType = ["1", "2", "3", "4", "5", "6", "7"]
+
+SupportLang = ["zh-Hans", "zh-Hant", "en", "ja", "ko", "fr", "de", "es"]
 
 ArtBanner = {
     "1": "https://i.ibb.co/fkDnqkK/119017072-p7-master1200.jpg",
@@ -75,15 +60,15 @@ NameBanner = {
     "7": "Other Banner",
 }
 
-#serverId:
+# serverId:
 America = "591d6af3a3090d8ea00d8f86cf6d7501"
 Asia = "86d52186155b148b5c138ceb41be9650"
 Europe = "6eb2a235b30d05efd77bedb5cf60999e"
-HMT = "919752ae5ea09c1ced910dd668a63ffb" #(HK, MO, TW)
+HMT = "919752ae5ea09c1ced910dd668a63ffb"  # (HK, MO, TW)
 SEA = "10cd7254d57e58ae560b15d51e34b4c8"
 
 
-#cardPoolType
+# cardPoolType
 FeaturedResonator = "1"
 FeaturedWeapon = "2"
 StandardResonator = "3"
