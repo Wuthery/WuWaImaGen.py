@@ -562,6 +562,25 @@ files = [
 setuptools = "*"
 
 [[package]]
+name = "kuro"
+version = "0.1.0"
+description = "Async API wrapper for KuroBBS written in Python."
+optional = false
+python-versions = "^3.10"
+files = []
+develop = false
+
+[package.dependencies]
+aiohttp = "^3.8.4"
+pydantic = "^2.0.1"
+
+[package.source]
+type = "git"
+url = "https://github.com/Wuthery/kuro.py"
+reference = "HEAD"
+resolved_reference = "2ff6524419341c5413a6b4baf3f871e85c02fdb5"
+
+[[package]]
 name = "more-itertools"
 version = "10.2.0"
 description = "More routines for operating on iterables, beyond itertools"
@@ -1313,4 +1332,4 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10"
-content-hash = "572387c6183d52f687beb0ae7c33854b7043691939174939d6bdc0e1878983bc"
+content-hash = "661c70b9886ac64c7614f31b6482aba696557cd2e8fba74f52a457d371007956"

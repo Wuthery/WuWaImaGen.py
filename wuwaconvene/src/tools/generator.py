@@ -1,10 +1,12 @@
+from collections.abc import Sequence
 from pathlib import Path
 
+import kuro
 from PIL import Image, ImageDraw
 
 from .color import get_colors, recolor_image
 from .model import Calculator, RecordCalculator
-from .pill import create_image_with_text, get_center_size, get_download_img, get_font
+from .pill import create_image_with_text, get_font, get_image, resize_image
 
 assets = Path(__file__).parent.parent / "assets"
 
@@ -58,54 +60,55 @@ async def get_stars(rank):
 
 
 class CardConvene:
-    def __init__(self, data: Calculator, name_banner: str = "Other Banner") -> None:
-        self.data = data
-        self.name_banner = name_banner
+    def __init__(
+        self, records: Sequence[kuro.models.GachaRecord], banner_name: str = "Other Banner"
+    ) -> None:
+        self._records = records
+        self._banner_name = banner_name
+        self._background: Image.Image | None = None
 
-    async def create_art(self, art):
-        self.background = Image.new("RGBA", (330, 599), (0, 0, 0, 0))
-        self.background.alpha_composite(art, (-68, 0))
+    async def _create_art(self, art: Image.Image) -> None:
+        self._background = Image.new("RGBA", (330, 599), (0, 0, 0, 0))
+        self._background.alpha_composite(art, (-68, 0))
 
-    async def create_count(self, value, color):
-        background = Image.open(files["count"]).copy()
+    async def _create_count(self, value: int, color: tuple[int, int, int, int]) -> Image.Image:
+        im = Image.open(files["count"]).copy()
         line = Image.open(files["count_line"])
         color_line = Image.open(files["count_color_line"])
         color_line = await recolor_image(color_line.copy(), color[:3])
 
-        background.alpha_composite(color_line)
-        background.alpha_composite(line)
+        im.alpha_composite(color_line)
+        im.alpha_composite(line)
 
-        d = ImageDraw.Draw(background)
+        d = ImageDraw.Draw(im)
 
-        font = await get_font(40)
+        font = get_font(40)
         x = int(font.getlength(str(value)) / 2)
         d.text((46 - x, 26), str(value), font=font, fill=(255, 255, 255, 255))
 
-        return background
+        return im
 
-    async def create_icons(self, data: RecordCalculator):
-        background = await open_background(data.qualityLevel)
-        shadow = await open_shadow(data.qualityLevel)
+    async def create_icons(self, record: kuro.models.GachaRecord):
+        background = await open_background(record.rarity)
+        shadow = await open_shadow(record.rarity)
 
-        icon = await data.get_icon()
-        if data.typeRecord == 1:
-            icon = await get_download_img(icon.banner, size=(798, 1100))
+        icon = await record.get_icon()
+        if record.type == kuro.models.GachaItemType.RESONATOR:
+            icon = await get_image(icon.banner, size=(798, 1100))
             background.alpha_composite(icon, (-100, -124))
         else:
-            icon = await get_download_img(icon.icon, size=(414, 414))
+            icon = await get_image(icon.icon, size=(414, 414))
             background.alpha_composite(icon, (0, 63))
 
         background.alpha_composite(shadow)
 
-        count = await self.create_count(data.drop, data.color.rgba)
+        count = await self._create_count(record.drop, record.color.rgba)
         background.alpha_composite(count, (325, 386))
 
-        stars = await get_stars(data.qualityLevel)
+        stars = await get_stars(record.rarity)
         background.alpha_composite(stars.resize((143, 32)), (7, 442))
 
-        name = await create_image_with_text(
-            data.name, 40, max_width=388, color=(255, 255, 255, 255)
-        )
+        name = create_image_with_text(record.name, 40, max_width=388, color=(255, 255, 255, 255))
         background.alpha_composite(name, (int(208 - name.size[0] / 2), int(520 - name.size[1] / 2)))
 
         return background
@@ -113,7 +116,7 @@ class CardConvene:
     async def build(self, color: tuple):
         background = Image.new("RGBA", (1065, 599), color)
         background.alpha_composite(frame)
-        background.alpha_composite(self.background)
+        background.alpha_composite(self._background)
         line = Image.open(files["line"])
         line, _ = await recolor_image(line.copy(), color, light=True)
         background.alpha_composite(line)
@@ -129,37 +132,42 @@ class CardConvene:
 
             position_x += 146
 
-        name = await create_image_with_text(
-            self.name_banner, 20, max_width=217, color=(255, 255, 255, 255)
+        name = create_image_with_text(
+            self._banner_name, 20, max_width=217, color=(255, 255, 255, 255)
         )
 
         background.alpha_composite(name, (353, 15))
 
         d = ImageDraw.Draw(background)
-        font = await get_font(21)
+        font = get_font(21)
         d.text(
-            (589, 17), f"Total: {self.data.info.total_spin}", font=font, fill=(255, 255, 255, 255)
+            (589, 17),
+            f"Total: {self._records.info.total_spin}",
+            font=font,
+            fill=(255, 255, 255, 255),
         )
-        d.text((792, 17), f"5: {self.data.info.next.five}/80", font=font, fill=(255, 255, 255, 255))
-        d.text((945, 17), f"4: {self.data.info.next.four}/10", font=font, fill=(255, 255, 255, 255))
+        d.text(
+            (792, 17), f"5: {self._records.info.next.five}/80", font=font, fill=(255, 255, 255, 255)
+        )
+        d.text(
+            (945, 17), f"4: {self._records.info.next.four}/10", font=font, fill=(255, 255, 255, 255)
+        )
 
         return background
 
     async def start(self, art: str):
-        art = await get_download_img(art)
-        art = await get_center_size((466, 600), art)
+        im = await get_image(art)
+        im = resize_image((466, 600), im)
         color = await get_colors(art, 15, common=True, radius=5, quality=800)
 
-        await self.create_art(art)
+        await self._create_art(im)
 
         self.icon = []
-        i = 1
-        for key in self.data.data:
+        for i, record in enumerate(self._records):
             if i == 15:
                 break
 
-            if key.qualityLevel > 3:
-                self.icon.append(await self.create_icons(key))
-                i += 1
+            if record.rarity > 3:
+                self.icon.append(await self.create_icons(record))
 
         return await self.build(color)

@@ -2,6 +2,7 @@ import asyncio
 import os
 import re
 from pathlib import Path
+from typing import Literal
 
 import aiofiles
 import aiohttp
@@ -11,35 +12,27 @@ from .json_data import JsonManager
 json_data_path = Path(__file__).parent.parent / "assets" / "character_icon.json"
 
 
-async def get_data_resonator(resonator_id: str | int) -> dict:
-    try:
-        json_data = await JsonManager(json_data_path).read()
-    except asyncio.CancelledError:
-        raise
-    except Exception as e:
-        raise Exception(f"Ошибка при чтении данных: {e}")
+async def fetch_resonator_data(
+    resonator_id: str | int,
+) -> dict[Literal["Icon", "Background"], str] | None:
+    json_data = await JsonManager(json_data_path).read()
 
     if str(resonator_id) in json_data:
         return json_data[str(resonator_id)]
 
     url = f"https://api.hakush.in/ww/data/en/character/{resonator_id}.json"
-    async with aiohttp.ClientSession() as session:
-        async with session.get(url) as response:
-            if response.status == 200:
-                data = await response.json()
-                if str(resonator_id) not in json_data:
-                    json_data[str(resonator_id)] = {
-                        "Icon": data["Icon"],
-                        "Background": data["Background"],
-                    }
-                    await JsonManager(json_data_path).write(json_data)
+    async with aiohttp.ClientSession() as session, session.get(url) as resp:
+        if resp.status != 200:
+            return None
+        data = await resp.json()
+        if str(resonator_id) not in json_data:
+            json_data[str(resonator_id)] = {
+                "Icon": data["Icon"],
+                "Background": data["Background"],
+            }
+            await JsonManager(json_data_path).write(json_data)
 
-                return data
-            else:
-                response_text = await response.text()
-                print(f"Error: {response.status}")
-                print(response_text)
-                return None
+        return json_data[str(resonator_id)]
 
 
 async def fetch_data(payload: dict) -> dict:

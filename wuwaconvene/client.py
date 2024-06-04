@@ -100,7 +100,7 @@ class Convene:
 
         if generator:
             data.card = await CardConvene(
-                data, name_banner=NameBanner.get(str(data.gacha_id), "Other Banner")
+                data, banner_name=NameBanner.get(str(data.gacha_id), "Other Banner")
             ).start(art)
 
         return data

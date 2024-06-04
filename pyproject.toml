@@ -28,6 +28,7 @@ numpy = "^1.26.4"
 pillow = "^10.3.0"
 pydantic = "^2.7.3"
 python = "^3.10"
+kuro = {git = "https://github.com/Wuthery/kuro.py"}
 
 [tool.poetry.group.dev]
 optional = true

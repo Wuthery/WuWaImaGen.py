@@ -3,7 +3,7 @@ import datetime
 from PIL import Image
 from pydantic import BaseModel, Field
 
-from .uttils import get_data_resonator
+from .uttils import fetch_resonator_data
 
 
 class RecordIcon(BaseModel):
@@ -31,7 +31,7 @@ class Record(BaseModel):
             icon = f"https://api.hakush.in/ww/UI/UIResources/Common/Image/IconWeapon/T_IconWeapon{self.resourceId}_UI.webp"
             return RecordIcon(icon=icon, banner=icon)
         else:
-            data = await get_data_resonator(self.resourceId)
+            data = await fetch_resonator_data(self.resourceId)
             if data is None:
                 return None
             icon = data.get("Icon", "").split(".")[1]
@@ -96,7 +96,7 @@ class RecordCalculator(BaseModel):
             icon = f"https://api.hakush.in/ww/UI/UIResources/Common/Image/IconWeapon/T_IconWeapon{self.resourceId}_UI.webp"
             return RecordIcon(icon=icon, banner=icon)
         else:
-            data = await get_data_resonator(self.resourceId)
+            data = await fetch_resonator_data(self.resourceId)
             if data is None:
                 return None
             icon = data.get("Icon", "").split(".")[1]
