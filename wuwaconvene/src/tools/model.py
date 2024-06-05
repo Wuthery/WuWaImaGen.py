@@ -1,3 +1,6 @@
+# Copyright 2024 DEViantUa <t.me/deviant_ua>
+# All rights reserved.
+
 import datetime
 from PIL import Image
 from typing import List, Optional
@@ -26,7 +29,8 @@ class Record(BaseModel):
     
     async def get_icon(self):
         if len(str(self.resourceId)) > 5:
-            icon = f"https://api.hakush.in/ww/UI/UIResources/Common/Image/IconWeapon/T_IconWeapon{self.resourceId}_UI.webp"
+            
+            icon = f"https://nogatekeep.wuthery.com/p/GameData/UIResources/common/image/iconweapon/t_iconweapon{self.resourceId}_ui.png"
             return RecordIcon(icon = icon, banner = icon)
         else:
             data = await get_data_resonator(self.resourceId)
@@ -35,7 +39,7 @@ class Record(BaseModel):
             icon = data.get("Icon", "").split(".")[1]
             banner = data.get("Background", "").split(".")[1]
             
-            return RecordIcon(icon = f"https://api.hakush.in/ww/UI/UIResources/Common/Image/IconRoleHead256/{icon}.webp", banner = f"https://api.hakush.in/ww/UI/UIResources/Common/Image/IconRolePile/{banner}.webp")
+            return RecordIcon(icon = f"https://nogatekeep.wuthery.com/GameData/UIResources/common/image/iconrolehead256/{icon.lower()}.png", banner = f"https://nogatekeep.wuthery.com/p/GameData/UIResources/common/image/iconrolepile/{banner.lower()}.png")
 
 class ConveneData(BaseModel):
     code: int
@@ -83,7 +87,7 @@ class RecordCalculator(BaseModel):
     
     async def get_icon(self):
         if len(str(self.resourceId)) > 5:
-            icon = f"https://api.hakush.in/ww/UI/UIResources/Common/Image/IconWeapon/T_IconWeapon{self.resourceId}_UI.webp"
+            icon = f"https://nogatekeep.wuthery.com/p/GameData/UIResources/common/image/iconweapon/t_iconweapon{self.resourceId}_ui.png"
             return RecordIcon(icon = icon, banner = icon)
         else:
             data = await get_data_resonator(self.resourceId)
@@ -92,7 +96,7 @@ class RecordCalculator(BaseModel):
             icon = data.get("Icon", "").split(".")[1]
             banner = data.get("Background", "").split(".")[1]
             
-            return RecordIcon(icon = f"https://api.hakush.in/ww/UI/UIResources/Common/Image/IconRoleHead256/{icon}.webp", banner = f"https://api.hakush.in/ww/UI/UIResources/Common/Image/IconRolePile/{banner}.webp")
+            return RecordIcon(icon = f"https://nogatekeep.wuthery.com/GameData/UIResources/common/image/iconrolehead256/{icon.lower()}.png", banner = f"https://nogatekeep.wuthery.com/p/GameData/UIResources/common/image/iconrolepile/{banner.lower()}.png")
 
 class Calculator(BaseModel):
     info: Info

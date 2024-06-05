@@ -34,12 +34,6 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 """
-
-__author__ = 'DeviantUa'
-__version__ = '0.0.2'
-__license__ = 'MIT'
-__copyright__ = 'Copyright 2024-present DeviantUa'
-
 from .client import *
 from .src.tools.uttils import *
 from .src.tools.model import *

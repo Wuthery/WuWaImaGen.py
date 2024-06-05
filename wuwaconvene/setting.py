@@ -1,4 +1,7 @@
 
+# Copyright 2024 DEViantUa <t.me/deviant_ua>
+# All rights reserved.
+
 from email.policy import default
 from urllib.parse import urlparse, parse_qs
 

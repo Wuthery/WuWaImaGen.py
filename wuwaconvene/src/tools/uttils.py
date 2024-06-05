@@ -1,11 +1,14 @@
+# Copyright 2024 DEViantUa <t.me/deviant_ua>
+# All rights reserved.
+
 import aiohttp
 import aiofiles
 import asyncio
 import os
 import re
 from typing import Union
-from .json_data import JsonManager
 from pathlib import Path
+from .json_data import JsonManager
 
 json_data_path = Path(__file__).parent.parent / "assets" / "character_icon.json"
 
@@ -15,7 +18,7 @@ async def get_data_resonator(resonator_id: Union[str, int]) -> dict:
     except asyncio.CancelledError:
         raise 
     except Exception as e:
-        raise Exception(f"Ошибка при чтении данных: {e}")
+        raise Exception(f"Error reading data: {e}")
 
     if str(resonator_id) in json_data:
         return json_data[str(resonator_id)]
@@ -32,8 +35,7 @@ async def get_data_resonator(resonator_id: Union[str, int]) -> dict:
                 return data
             else:
                 response_text = await response.text()
-                print(f"Error: {response.status}")
-                print(response_text)
+                print(f"Error: {response_text}")
                 return None
 
 async def fetch_data(payload: dict) -> dict:
@@ -48,8 +50,7 @@ async def fetch_data(payload: dict) -> dict:
                 return data
             else:
                 response_text = await response.text()
-                print(f"Error: {response.status}")
-                print(response_text)
+                print(f"Error: {response_text}")
                 return None
 
 async def auto_link(game_path):
@@ -82,47 +83,3 @@ async def auto_link(game_path):
     except Exception as e:
         raise Exception("An error occurred: {}".format(e))
     
-'''
-async def auto_link(game_path):
-    try:
-        import subprocess
-    except ImportError:
-        raise Exception("Install the subprocess module")
-
-    game_path = game_path.split("Wuthering Waves")[0]
-    log_file = os.path.join(game_path, 'Wuthering Waves', 'Wuthering Waves Game', 'Client', 'Saved', 'Logs', 'Client.log')
-    
-    if not os.path.exists(log_file):
-        raise  Exception("The file '{}' does not exist.".format(log_file))
-
-    try:
-        ps_command = ''''''
-        $logFile = "{}"
-        if (-not (Test-Path $logFile)) {{
-            return "The file '$logFile' does not exist."
-        }}
-        $latestUrlEntry = Get-Content $logFile | Select-String "https://aki-gm-resources-oversea.aki-game.net" | Select-Object -Last 1
-        if ($null -ne $latestUrlEntry) {{
-            $urlPattern = 'url":"(.*?)"'
-            $url = [regex]::Match($latestUrlEntry.ToString(), $urlPattern).Groups[1].Value
-            if ($url) {{
-                return $url
-            }} else {{
-                return "No URL found."
-            }}
-        }} else {{
-            return "No matching entries found in the log file. Please open your Convene History first!"
-        }}
-        ''''''.format(log_file)
-        
-        cmd = ['powershell', '-Command', ps_command]
-        result = subprocess.run(cmd, capture_output=True, text=True)
-        if result.returncode == 0:
-            url = result.stdout.strip()
-            return url
-        else:
-            return result.stderr
-    
-    except Exception as e:
-        return "An error occurred: {}".format(e)
-    '''

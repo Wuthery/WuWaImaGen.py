@@ -1,41 +1,28 @@
-[project]
-description = "Python package to generate information cards from your Wuthering Wave's convene history."
-name = "wuwaconvene"
-requires-python = ">=3.10"
-
-[project.urls]
-homepage = "https://github.com/DEViantUA/StarRailCard"
-
 [tool.poetry]
-authors = ["DeviantUa <deviantapi@gmail.com>", "seria <seria.ati@gmail.com>"]
-description = "Python package to generate information cards from your Wuthering Wave's convene history."
-license = "GPL-3.0"
 name = "wuwaconvene"
-packages = [{include = "wuwaconvene"}]
+version = "0.1.0" 
+description = "WuWaConvene - A module for Python that allows you to get the gacha history from the game Wuthering Waves, also calculate the guarantors and generate an information card."
+authors = ["DeviantUa <deviantapi@gmail.com>"]
+license = "MIT"
 readme = "README.md"
-version = "0.1.0"
+
+repository = "https://github.com/Wuthery/WuWaConvene.py"
+homepage = "https://github.com/Wuthery/WuWaConvene.py"
+keywords = ["Wuthering", "Waves", "generation", "WuWa", "gacha", "convene", "card", "api"]
 
 [tool.poetry.dependencies]
-aiofiles = "^23.2.1"
-aiohttp = "^3.9.5"
-anyio = "^4.4.0"
-beautifulsoup4 = "^4.12.3"
-cachetools = "^5.3.3"
-imageio = "^2.34.1"
-more-itertools = "^10.2.0"
-moviepy = "^1.0.3"
-numpy = "^1.26.4"
-pillow = "^10.3.0"
-pydantic = "^2.7.3"
-python = "^3.10"
-
-[tool.poetry.group.dev]
-optional = true
-
-[tool.poetry.group.dev.dependencies]
-pre-commit = "^3.7.1"
-ruff = "^0.4.5"
+python = ">=3.9"
+pydantic = "*"
+aiohttp = "*"
+cachetools = "*"
+Pillow = "*"
+aiofiles = "*"
+more-itertools = "*"
+numpy = "*"
+beautifulsoup4 = "*"
+anyio = "*"
 
 [build-system]
+requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
-requires = ["poetry-core"]
+

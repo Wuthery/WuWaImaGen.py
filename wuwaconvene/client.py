@@ -1,5 +1,8 @@
+# Copyright 2024 DEViantUa <t.me/deviant_ua>
+# All rights reserved.
+
 from typing import Union
-from .setting import get_params_link, cardPoolType, SupportLang, DefaultColor, NameBanner, ArtBanner, get_color_four_section, get_color_five_section
+from .setting import  cardPoolType, SupportLang, DefaultColor, NameBanner, ArtBanner, get_params_link, get_color_four_section, get_color_five_section
 from .src.tools.uttils import fetch_data
 from .src.tools.generator import CardConvene
 from .src.tools.model import ConveneData, Calculator
@@ -15,6 +18,16 @@ class Convene:
         pass
     
     async def calculator(self, data: ConveneData, generator: bool = False, art: str = None) -> Calculator:
+        """Gacha counting
+
+        Args:
+            data (ConveneData): Data received using get()
+            generator (bool, optional): Generate a card or not. Defaults to False.
+            art (str, optional): Custom image, if empty will be selected from the standard ones. Defaults to None.
+
+        Returns:
+            Calculator: BaseModel
+        """
         total_spin = len(data.data)
         five_stars = 0
         four_stars = 0
@@ -93,7 +106,7 @@ class Convene:
         """Get information about gacha
 
         Args:
-            gacha_id (Union[int,str]): Id gachi from 1 to 7 (1 - Featured Resonator | 2 - Featured Weapon | 3 - Standard Resonator | 4 - Standard Weapon | 5 - Beginner Convene | 6 - Beginner Convene Choice | 7 - Other)
+            gacha_id (Union[int,str]): Id gacha_id from 1 to 7 (1 - Featured Resonator | 2 - Featured Weapon | 3 - Standard Resonator | 4 - Standard Weapon | 5 - Beginner Convene | 6 - Beginner Convene Choice | 7 - Other)
             lang (str, optional): The language in which to return the result. Defaults to "en" | Acceptable: zh-Hans, zh-Hant, en, ja, ko, fr, de, es 
             generator (bool, optional): Generate a card. Defaults to False.
 

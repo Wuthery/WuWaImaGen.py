@@ -1,3 +1,6 @@
+# Copyright 2024 DEViantUa <t.me/deviant_ua>
+# All rights reserved.
+
 import json
 import aiohttp
 from pathlib import Path
@@ -25,7 +28,6 @@ async def get_download_img(link,size = None, thumbnail_size = None):
         async with aiohttp.ClientSession(headers=headers_p) as session, session.get(link) as r:
             image = await r.read()
     except Exception as e:
-        print(e)
         raise Exception (f"Error image: {link}")
     
     image = Image.open(BytesIO(image)).convert("RGBA")

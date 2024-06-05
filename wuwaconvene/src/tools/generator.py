@@ -1,3 +1,6 @@
+# Copyright 2024 DEViantUa <t.me/deviant_ua>
+# All rights reserved.
+
 from PIL import ImageDraw,Image, ImageChops, ImageSequence, ImageFont
 from .pill import get_download_img, get_center_size, get_font, create_image_with_text
 from .color import get_colors, recolor_image
