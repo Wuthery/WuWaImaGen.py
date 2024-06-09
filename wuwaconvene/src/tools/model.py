@@ -39,7 +39,7 @@ class Record(BaseModel):
             icon = data.get("Icon", "").split(".")[1]
             banner = data.get("Background", "").split(".")[1]
             
-            return RecordIcon(icon = f"https://nogatekeep.wuthery.com/GameData/UIResources/common/image/iconrolehead256/{icon.lower()}.png", banner = f"https://nogatekeep.wuthery.com/p/GameData/UIResources/common/image/iconrolepile/{banner.lower()}.png")
+            return RecordIcon(icon = f"https://nogatekeep.wuthery.com/p/GameData/UIResources/common/image/iconrolehead256/{icon.lower()}.png", banner = f"https://nogatekeep.wuthery.com/p/GameData/UIResources/common/image/iconrolepile/{banner.lower()}.png")
 
 class ConveneData(BaseModel):
     code: int
@@ -96,7 +96,7 @@ class RecordCalculator(BaseModel):
             icon = data.get("Icon", "").split(".")[1]
             banner = data.get("Background", "").split(".")[1]
             
-            return RecordIcon(icon = f"https://nogatekeep.wuthery.com/GameData/UIResources/common/image/iconrolehead256/{icon.lower()}.png", banner = f"https://nogatekeep.wuthery.com/p/GameData/UIResources/common/image/iconrolepile/{banner.lower()}.png")
+            return RecordIcon(icon = f"https://nogatekeep.wuthery.com/p/GameData/UIResources/common/image/iconrolehead256/{icon.lower()}.png", banner = f"https://nogatekeep.wuthery.com/p/GameData/UIResources/common/image/iconrolepile/{banner.lower()}.png")
 
 class Calculator(BaseModel):
     info: Info
