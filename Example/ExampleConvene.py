@@ -6,13 +6,13 @@ This example allows you to generate a gacha card and calculate your luck.
 More examples here: https://github.com/Wuthery/WuWaImaGen.py/tree/main/Example
 '''
 
-ClientWuWa = wuwaimagen.ClientWuWa(assets=True)
+client = wuwaimagen.ClientWuWa(assets=True)
 
 async def main():
     link = "https://aki-gm-resources-oversea.aki-game.net/aki/gacha/index.html#/record?svr_id=6eb2a235b30d05efd77bedb5cf60999e&player_id=600329448&lang=en&gacha_id=4&gacha_type=6&svr_area=global&record_id=97bfb175262ffb96a20874040b8662be&resources_id=917dfa695d6c6634ee4e972bb9168f6a"
     #link = await wuwaconvene.auto_link("D:\Wuthering Waves") - Alternative automatic way to receive a link
     
-    async with ClientWuWa as client:
+    async with client:
         data = await client.get_gacha_info(link, 1, lang= 'en', generator=True)
         for key in data.data:
             icon = await key.get_icon()
