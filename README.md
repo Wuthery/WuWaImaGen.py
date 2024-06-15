@@ -15,7 +15,7 @@ WuWaImaGen - is a Python module that allows you to generate images for projects 
 * Generating a calendar of events in the game
 
 ### Helpful information:
-* [F.A.Q.](https://github.com/Wuthery/WuWaImaGen.py/wiki/Documentation) 
+* [Documentation](https://github.com/Wuthery/WuWaImaGen.py/wiki/Documentation) 
 * [Discord](https://discord.gg/rKrbqz5utj)
 
 ### Install:
