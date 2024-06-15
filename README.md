@@ -2,16 +2,17 @@
  <img src="https://raw.githubusercontent.com/Wuthery/WuWaConvene.py/main/ReadMeConfig/banner.png" alt="Баннер"/>
 </p>
 
-# WuWaConvene.py
-WuWaConvene - A module for Python that allows you to get the gacha history from the game Wuthering Waves, also calculate the guarantors and generate an information card
+# WuWaImaGen.py
+WuWaImaGen - is a Python module that allows you to generate images for projects based on the game Wuthering Waves
 
 
 ### Possibilities:
 
-* Get banner history
-* Generate card
+* Generate card Gacha
+* Counting  Gacha history
 * Automatically receive a link to the journal
 * Counting history
+* Generating a calendar of events in the game
 
 ### Helpful information:
 * [F.A.Q.](https://github.com/Wuthery/WuWaConvene.py/wiki/Documentation)
