@@ -1,5 +1,5 @@
 <p align="center">
- <img src="https://raw.githubusercontent.com/Wuthery/WuWaConvene.py/main/ReadMeConfig/Banner.png" alt="Баннер"/>
+ <img src="https://raw.githubusercontent.com/Wuthery/WuWaConvene.py/main/ReadMeConfig/test.png" alt="Баннер"/>
 </p>
 
 # WuWaConvene.py
