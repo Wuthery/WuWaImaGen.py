@@ -1,7 +1,7 @@
 [tool.poetry]
-name = "wuwaconvene"
-version = "0.1.0" 
-description = "WuWaConvene - A module for Python that allows you to get the gacha history from the game Wuthering Waves, also calculate the guarantors and generate an information card."
+name = "wuwaimagen"
+version = "0.1.1" 
+description = "WuWaImaGen - is a Python module that allows you to generate images for projects based on the game Wuthering Waves"
 authors = ["DeviantUa <deviantapi@gmail.com>"]
 license = "MIT"
 readme = "README.md"
@@ -21,6 +21,7 @@ more-itertools = "*"
 numpy = "*"
 beautifulsoup4 = "*"
 anyio = "*"
+"kuro.py" = "*"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
