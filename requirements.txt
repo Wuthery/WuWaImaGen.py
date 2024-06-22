@@ -6,3 +6,4 @@ Pillow
 pydantic
 beautifulsoup4
 anyio
+kuro.py
