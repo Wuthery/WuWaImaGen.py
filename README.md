@@ -13,6 +13,8 @@ WuWaImaGen - is a Python module that allows you to generate images for projects 
 * Automatically receive a link to the journal
 * Counting history
 * Generating a calendar of events in the game
+* Creating a player's business card
+* Creating elevation material cards for characters and weapons
 
 ### Helpful information:
 * [Documentation](https://github.com/Wuthery/WuWaImaGen.py/wiki/Documentation) 
