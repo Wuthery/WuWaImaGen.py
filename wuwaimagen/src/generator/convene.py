@@ -86,7 +86,7 @@ class CardConvene:
         name = await create_image_with_text(data.name, 40, max_width=388, color=(255, 255, 255, 255))
         background.alpha_composite(name, (int(208-name.size[0]/2), int(520-name.size[1]/2)))
         
-        return background
+        return {"icon": background, "rarity": data.qualityLevel}
 
     async def build(self, color: tuple) -> Image.Image:
         frame = await files.frame
@@ -100,11 +100,11 @@ class CardConvene:
         position_x = 353
         position_y = 69
         
-        for _, key in enumerate(self.icon):
+        for _, key in enumerate(reversed(self.icon)):
             if _ in [5,10]:
                 position_y += 177
                 position_x = 353
-            background.alpha_composite(key.resize((115,158)),(position_x,position_y))
+            background.alpha_composite(key["icon"].resize((115,158)),(position_x,position_y))
             
             position_x += 146
         
@@ -132,7 +132,7 @@ class CardConvene:
 
         self.icon = []
         i = 1
-        for key in self.data.data:
+        for key in reversed(self.data.data):
             if i == 15:
                 break
             

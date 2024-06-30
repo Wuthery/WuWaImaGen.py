@@ -51,7 +51,7 @@ class RecordCalculator(BaseModel):
     
     async def get_icon(self):
         if len(str(self.resourceId)) > 5:
-            icon = WUTHERY_CDN +  f"p/GameData/UIResources/common/image/iconweapon/t_iconweapon{self.resourceId}_ui.png"
+            icon = WUTHERY_CDN +  f"d/GameData/UIResources/Common/Image/IconWeapon/T_IconWeapon{self.resourceId}_UI.png"
             return RecordIcon(icon = icon, banner = icon)
         else:
             ''' ===== Outdated way =======
@@ -62,7 +62,7 @@ class RecordCalculator(BaseModel):
             banner = data.get("Background", "").split(".")[1]
             '''
             
-            return RecordIcon(icon = WUTHERY_CDN + f"p/GameData/IDFiedResources/Common/Image/IconRoleHead256/{self.resourceId}.png", banner = WUTHERY_CDN + f"p/GameData/IDFiedResources/Common/Image/IconRolePile/{self.resourceId}.png")
+            return RecordIcon(icon = WUTHERY_CDN + f"d/GameData/IDFiedResources/Common/Image/IconRoleHead256/{self.resourceId}.png", banner = WUTHERY_CDN + f"d/GameData/IDFiedResources/Common/Image/IconRolePile/{self.resourceId}.png")
 
 class Calculator(BaseModel):
     info: Info

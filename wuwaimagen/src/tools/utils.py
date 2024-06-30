@@ -91,7 +91,7 @@ async def auto_link(game_path: str) -> str:
     except Exception as e:
         raise Exception("An error occurred: {}".format(e))
 
-link_icon = "https://files.wuthery.com/p/GameData/UIResources/common/image"
+link_icon = "https://files.wuthery.com/p/GameData/UIResources/Common/Image"
 
 conditions = {
     4: [StatBonusForteCircuit, [1,3]],

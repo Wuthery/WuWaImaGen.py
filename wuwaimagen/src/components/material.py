@@ -35,7 +35,7 @@ class CalculatorMaterial(MainWuWaImaGen):
         for key in self.consume:
             item = next(filter(lambda x: x["Id"] == int(key), self.ItemInfo), None)
             if not item  is None:
-                icon = item.get("Icon").split("Image")[1].lower().split(".")[0]
+                icon = item.get("Icon").split("Image")[1].split(".")[0]
                 items[key] = {"id": int(key), "icon": utils.link_icon + icon + ".png", "rarity": item.get("QualityId"), "value": self.consume[key]}
 
         return utils.sort_items(items)
@@ -119,7 +119,10 @@ class CalculatorMaterial(MainWuWaImaGen):
                 if str(key["SkillLevelGroupId"])[-1:] == "7":
                     if forte_circuit.min >= key["SkillId"] or forte_circuit.max < key["SkillId"]:
                         continue
-                    
+                
+                if key["Consume"] is None:
+                    continue
+                
                 for items_id in key["Consume"]:
                     if not items_id in self.consume:
                         self.consume[items_id] = key["Consume"][items_id]
@@ -198,7 +201,7 @@ class CalculatorMaterial(MainWuWaImaGen):
         weapon_info = next(filter(lambda x: x["ItemId"] == int(config.id), self.WeaponConf), None)
         name = weapon_info.get("WeaponName")
         
-        return  WeaponInfo(id = weapon_info.get("ItemId"), name = self.MultiText.get(name), rarity= weapon_info.get("QualityId"), icon=  utils.WUTHERY_CDN +  f"p/GameData/UIResources/common/image/iconweapon/t_iconweapon{weapon_info.get("ItemId")}_ui.png")
+        return  WeaponInfo(id = weapon_info.get("ItemId"), name = self.MultiText.get(name), rarity= weapon_info.get("QualityId"), icon=  utils.WUTHERY_CDN +  f"p/GameData/UIResources/Common/Image/IconWeapon/T_IconWeapon{weapon_info.get("ItemId")}_UI.png")
     
     async def get_material(
         self, 

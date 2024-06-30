@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "wuwaimagen"
-version = "0.1.1" 
+version = "0.1.2" 
 description = "WuWaImaGen - is a Python module that allows you to generate images for projects based on the game Wuthering Waves"
 authors = ["DeviantUa <deviantapi@gmail.com>"]
 license = "MIT"
