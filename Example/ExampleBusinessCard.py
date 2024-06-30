@@ -22,7 +22,7 @@ config = {
 
 async def main():    
     async with client:
-        data = await client.get_card(
+        data = await client.get_business_card(
             level = 81,
             signature= "Did you think I was a programmer?",
             config= config
