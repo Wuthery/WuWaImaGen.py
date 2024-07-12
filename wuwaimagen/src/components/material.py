@@ -26,7 +26,7 @@ class CalculatorMaterial(MainWuWaImaGen):
         self.SkillTree = await utils.get_data_resonator("SkillTree")
         self.SkillLevel = await utils.get_data_resonator("SkillLevel")
         self.RoleBreach =  await utils.get_data_resonator("RoleBreach")
-        self.MultiText  = await utils.get_textMap(lang= "en", filename = "MultiText")
+        self.MultiText  = await utils.get_textMap(lang= self.lang, filename = "MultiText")
 
     
     async def get_items(self):

@@ -21,6 +21,12 @@ total_style = {
     'three_stars': 'stars/three.png',
     'two_stars': 'stars/two.png',
     'one_stars': 'stars/one.png',
+    
+    't_five_stars': 'stars/t_stars_five.png',
+    't_four_stars': 'stars/t_stars_four.png',
+    't_three_stars': 'stars/t_stars_three.png',
+    't_two_stars': 'stars/t_stars_two.png',
+    't_one_stars': 'stars/t_stars_one.png',
 }
 
 
@@ -97,11 +103,29 @@ map_matterial_card = {
     
     'mask': 'matterial/weapon/mask.png',
     
-    
-    
-
 }
+map_weapon_card = {
+    'maska_weapon': 'wiki/weapon/maska_weapon.png',
+    'background': 'wiki/weapon/WeaponBackground.png',
+    
+    'items_five': 'wiki//weapon/frame_items/five.png',
+    'items_four': 'wiki//weapon/frame_items/four.png',
+    'items_three': 'wiki//weapon/frame_items/three.png',
+    'items_two': 'wiki//weapon/frame_items/two.png',
+    'items_one': 'wiki//weapon/frame_items/one.png',
+    
+    'character_background': 'wiki//character/character_background.png',
+    'character_constant': 'wiki//character/constant.png',
+    'character_food_background': 'wiki//character/foodbackground.png',
+    'character_level_frame': 'wiki//character/level_frame.png',
+    'character_line': 'wiki//character/line.png',
+    'character_skill_frame': 'wiki//character/skill_frame.png',
+    'character_skill_stat': 'wiki//character/skill_stat.png',
+    'character_ascension_line': 'wiki//character/ascension_line.png',
 
+    
+}
+    
 class ImageCache:
     
     _assets_download = False
@@ -121,6 +145,8 @@ class ImageCache:
             cls._mapping = map_business_card
         elif mod == 4:
             cls._mapping = map_matterial_card
+        elif mod == 5:
+            cls._mapping = map_weapon_card
         
     @classmethod
     async def _load_image(cls, name) -> Image.Image:

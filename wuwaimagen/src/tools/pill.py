@@ -113,3 +113,68 @@ async def create_image_with_text(text: str, font_size: int, max_width: int = 336
     cache[cache_key] = img
     
     return img
+
+
+def calculate_text_size(text, font, max_width):
+    lines = []
+    line = []
+    for word in text.split():
+        if line:
+            temp_line = line + [word]
+            temp_text = ' '.join(temp_line)
+            temp_width = font.getbbox(temp_text)[2] - font.getbbox(temp_text)[0]
+            if temp_width <= max_width:
+                line = temp_line
+            else:
+                lines.append(line)
+                line = [word]
+        else:
+            line = [word]
+    if line:
+        lines.append(line)
+
+    max_line_width = max(font.getbbox(' '.join(line))[2] - font.getbbox(' '.join(line))[0] for line in lines)
+    total_height = sum(font.getbbox(' '.join(line))[3] - font.getbbox(' '.join(line))[1] for line in lines) + (len(lines) - 1) * 5
+
+    return lines, min(max_line_width, max_width), total_height
+
+async def create_image_with_text_v2(text: str, font_size: int, max_width: int = 336, color: tuple = (255, 255, 255, 255), padding_default:tuple = (0,0), alg: str = "Left") -> Image.Image:
+    cache_key = json.dumps((text, font_size, max_width, color, alg), sort_keys=True)
+    if cache_key in cache:
+        return cache[cache_key]
+    
+    font = await get_font(font_size)
+
+    lines, width, height = calculate_text_size(text, font, max_width)
+
+    padding = 5
+    img_width = width + 2 * padding + padding_default[0]
+    img_height = height + 2 * padding + padding_default[1]
+
+    img = Image.new('RGBA', (img_width, img_height), color=(0, 0, 0, 0))
+    draw = ImageDraw.Draw(img)
+    
+    y_text = padding
+    for line in lines:
+        line_text = ' '.join(line)
+        bbox = font.getbbox(line_text)
+        text_width = bbox[2] - bbox[0]
+        text_height = bbox[3] - bbox[1]
+        if alg.lower() == "center":
+            x_text = (img_width - text_width) // 2
+        else:
+            x_text = padding
+        draw.text((x_text, y_text), line_text, font=font, fill=color)
+        y_text += text_height + 5
+
+    cache[cache_key] = img
+    
+    return img
+
+async def apply_opacity(image, opacity=0.2):
+    result_image = image.copy()
+    alpha = result_image.split()[3]
+    alpha = alpha.point(lambda p: int(p * opacity))
+    result_image.putalpha(alpha)
+
+    return result_image

@@ -40,6 +40,19 @@ async def get_data_resonator(filename: str = "RoleInfo") -> dict:
                 print(f"Error: {await response.text()}")
                 return None
 
+
+async def get_data(lang: str = "en", catalog: str = "en", filename: str = "RoleInfo") -> dict:
+    url = WUTHERY_CDN + f"d/GameData/Grouped/localized/{lang}/{catalog}/{filename}.json"
+    async with aiohttp.ClientSession() as session:
+        async with session.get(url) as response:
+            if response.status == 200:
+                data = await response.json()
+                await JsonManager(json_local / lang / catalog / f'{filename}.json').write(data)
+                return data
+            else:
+                print(f"Error: {await response.text()}")
+                return None
+
 async def get_open_file(filename: str = 'RoleInfo.json') -> dict:
     try:
         return await JsonManager(json_local / filename).read()
